@@ -1,0 +1,51 @@
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Feedback Details</h1>
+
+<div>
+  <strong>Nombre:</strong> <%= @feedback.first_name %>
+</div>
+
+<div>
+  <strong>Apellido:</strong> <%= @feedback.last_name %>
+</div>
+
+<div>
+  <strong>Cédula:</strong> <%= @feedback.identification_number %>
+</div>
+
+<div>
+  <strong>Correo:</strong> <%= @feedback.email %>
+</div>
+
+<div>
+  <strong>Empresa:</strong> <%= @feedback.company %>
+</div>
+
+<div>
+  <strong>Diversión y Experiencia:</strong> <%= @feedback.enjoyment_experience_rating_text %>
+</div>
+
+<div>
+  <strong>Descubrimiento de Beneficios:</strong> <%= @feedback.benefit_discovery_rating_text %>
+</div>
+
+<div>
+  <strong>Interacción y Participación:</strong> <%= @feedback.interaction_participation_rating_text %>
+</div>
+
+<div>
+  <strong>Notas:</strong> <%= @feedback.notes %>
+</div>
+
+<div>
+  <strong>Fecha de Creación:</strong> <%= l @feedback.created_at, format: :long %>
+</div>
+
+<div>
+  <%= link_to "Editar este feedback", edit_feedback_path(@feedback) %> |
+  <%= link_to "Volver a los feedbacks", feedbacks_path %>
+
+  <%= button_to "Eliminar este feedback", @feedback, method: :delete %>
+</div>

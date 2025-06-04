@@ -1,0 +1,128 @@
+<%# Fondo original sin modificar %>
+<div class="min-h-screen flex items-center justify-center py-12 px-4 bg-cover bg-center bg-fixed flex-col" style="background-image: url('/images/fon.jpg');">
+  <div class="w-full max-w-4xl p-4 md:p-8 rounded-lg">
+    
+    <div class="text-center mb-12">
+      <h1 class="text-white font-extrabold">
+        <span class="block text-9xl leading-tight">EXPLORA</span>
+      </h1>
+    </div>
+     <div class="text-center mb-12">
+      <h1 class="text-white font-bold">
+        <span class="block text-8xl">Bienestar</span>
+      </h1>
+    </div>
+
+    <%= form_with(model: feedback) do |form| %>
+      <% if feedback.errors.any? %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-6 w-full">
+          <p class="font-bold mb-2"><%= pluralize(feedback.errors.count, "error") %> impidió que tu feedback fuera guardado:</p>
+          <ul class="list-disc list-inside">
+            <% feedback.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%# Sección Datos Personales - Fondo naranja original %>
+      <div class="bg-orange-500 py-4 px-6 shadow-md mb-6 w-full rounded-none">
+        <h2 class="text-white text-2xl font-bold text-left tracking-wide">DATOS PERSONALES</h2>
+      </div>
+
+      <%# Campos del formulario - Fondo original %>
+      <div class="space-y-4 px-2 md:px-6 mb-6 w-full">
+        <%# Nombre %>
+        <div class="relative">
+          <%= form.text_field :first_name, placeholder: " ", class: "peer w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%= form.label :first_name, "Nombre", class: "absolute left-4 text-gray-500 text-base transform duration-300 -translate-y-full scale-75 bg-white px-1 top-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+
+        <%# Apellido %>
+        <div class="relative">
+          <%= form.text_field :last_name, placeholder: " ", class: "peer w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%= form.label :last_name, "Apellido", class: "absolute left-4 text-gray-500 text-base transform duration-300 -translate-y-full scale-75 bg-white px-1 top-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+
+        <%# Cédula %>
+        <div class="relative">
+          <%= form.text_field :identification_number, placeholder: " ", class: "peer w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%= form.label :identification_number, "Cédula", class: "absolute left-4 text-gray-500 text-base transform duration-300 -translate-y-full scale-75 bg-white px-1 top-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+
+        <%# Correo %>
+        <div class="relative">
+          <%= form.text_field :email, placeholder: " ", class: "peer w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%= form.label :email, "Correo", class: "absolute left-4 text-gray-500 text-base transform duration-300 -translate-y-full scale-75 bg-white px-1 top-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+
+        <%# Empresa %>
+        <div class="relative">
+          <%= form.text_field :company, placeholder: " ", class: "peer w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%= form.label :company, "Empresa", class: "absolute left-4 text-gray-500 text-base transform duration-300 -translate-y-full scale-75 bg-white px-1 top-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+      </div>
+
+      <%# SECCIÓN DE CALIFICACIÓN con fondo blanco semitransparente EXCLUSIVAMENTE AQUÍ %>
+      <div class="bg-white bg-opacity-70 p-6 rounded-lg mb-6">
+        <%# Encabezado morado %>
+        <div class="bg-purple-500 py-4 px-6 shadow-md mb-6 w-full rounded-none">
+          <div class="flex items-start">
+            <h3 class="text-white text-2xl font-bold tracking-wide whitespace-nowrap">CALIFICA TU EXPERIENCIA</h3>
+            <div class="flex gap-20 ml-[60px]">
+              <%= image_tag "/images/mala.png", class: "h-12 w-12 object-contain" %>
+              <%= image_tag "/images/regular.png", class: "h-12 w-12 object-contain" %>
+              <%= image_tag "/images/buena.png", class: "h-12 w-12 object-contain" %>
+            </div>
+          </div>
+        </div>
+
+        <%# Preguntas de rating %>
+        <div class="px-2 md:px-6 space-y-6">
+          <%# Diversión y experiencia %>
+          <div class="grid grid-cols-5 items-center gap-1 py-3">
+            <div class="col-span-2 bg-blue-800 text-white font-medium text-sm py-2 px-4 rounded-full shadow-md text-center w-full">DIVERSIÓN Y EXPERIENCIA</div>
+            <% Feedback::RATING_OPTIONS.each do |value, _text| %>
+              <div class="col-span-1 flex justify-center">
+                <%= form.radio_button :enjoyment_experience_rating, value, id: "enjoyment_experience_rating_#{value}", class: "form-radio h-5 w-5 text-orange-600 border-2 border-orange-500 focus:ring-orange-500 cursor-pointer" %>
+                <%= form.label "enjoyment_experience_rating_#{value}".to_sym, "", class: "sr-only" %>
+              </div>
+            <% end %>
+          </div>
+
+          <%# Descubrimiento de beneficios %>
+          <div class="grid grid-cols-5 items-center gap-1 py-3">
+            <div class="col-span-2 bg-blue-800 text-white font-medium text-sm py-2 px-4 rounded-full shadow-md text-center w-full">DESCUBRIMIENTO DE BENEFICIOS</div>
+            <% Feedback::RATING_OPTIONS.each do |value, _text| %>
+              <div class="col-span-1 flex justify-center">
+                <%= form.radio_button :benefit_discovery_rating, value, id: "benefit_discovery_rating_#{value}", class: "form-radio h-5 w-5 text-orange-600 border-2 border-orange-500 focus:ring-orange-500 cursor-pointer" %>
+                <%= form.label "benefit_discovery_rating_#{value}".to_sym, "", class: "sr-only" %>
+              </div>
+            <% end %>
+          </div>
+
+          <%# Interacción y participación %>
+          <div class="grid grid-cols-5 items-center gap-1 py-3">
+            <div class="col-span-2 bg-blue-800 text-white font-medium text-sm py-2 px-4 rounded-full shadow-md text-center w-full">INTERACCIÓN Y PARTICIPACIÓN</div>
+            <% Feedback::RATING_OPTIONS.each do |value, _text| %>
+              <div class="col-span-1 flex justify-center">
+                <%= form.radio_button :interaction_participation_rating, value, id: "interaction_participation_rating_#{value}", class: "form-radio h-5 w-5 text-orange-600 border-2 border-orange-500 focus:ring-orange-500 cursor-pointer" %>
+                <%= form.label "interaction_participation_rating_#{value}".to_sym, "", class: "sr-only" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%# Botón Enviar - Fuera del fondo semitransparente %>
+      <div class="flex justify-center py-6 px-6">
+        <%= form.submit "Enviar", class: "bg-white hover:bg-gray-100 text-orange-500 font-bold py-3 px-12 rounded-full shadow-lg cursor-pointer transition duration-300 ease-in-out text-3xl" %>
+      </div>
+
+      <%# Logo - Fondo original %>
+      <div class="flex justify-center mt-8">
+        <%= image_tag "/images/logo.png", class: "h-50 w-auto" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+wb = xlsx_package.workbook
+
+# Agrega una hoja de cálculo
+wb.add_worksheet(name: "Feedbacks") do |sheet|
+  # Fila de encabezados
+  sheet.add_row [
+    "ID",
+    "Nombre",
+    "Apellido",
+    "Cédula",
+    "Correo",
+    "Empresa",
+    "Diversión y Experiencia",
+    "Descubrimiento de Beneficios",
+    "Interacción y Participación",
+    "Notas",
+    "Fecha de Creación"
+  ]
+
+  # Filas de datos
+  @feedbacks.each do |feedback|
+    sheet.add_row [
+      feedback.id,
+      feedback.first_name,
+      feedback.last_name,
+      feedback.identification_number,
+      feedback.email,
+      feedback.company,
+      feedback.enjoyment_experience_rating_text,
+      feedback.benefit_discovery_rating_text,
+      feedback.interaction_participation_rating_text,
+      feedback.notes,
+      # CORRECCIÓN AQUÍ:
+      feedback.created_at&.strftime("%Y-%m-%d %H:%M:%S") || ""
+
+    ]
+  end
+
+  
+end

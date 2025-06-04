@@ -1,0 +1,58 @@
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 p-8 bg-white bg-opacity-90 rounded-lg shadow-xl">
+    <div class="text-center">
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+        Inicia sesión en tu cuenta
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        <%# Aquí puedes añadir un enlace condicional al registro si aplica a este scope (e.g., si admins pueden registrarse) %>
+        <% if devise_mapping.registerable? %>
+          O <a href="<%= new_registration_path(resource_name) %>" class="font-medium text-orange-600 hover:text-orange-500">regístrate para una nueva cuenta</a>
+        <% end %>
+      </p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
+      <div class="rounded-md shadow-sm -space-y-px">
+        <%# Campo Email %>
+        <div class="relative mb-4">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: " ", class: "peer block w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 appearance-none focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%# Label flotante con la lógica corregida %>
+          <%= f.label :email, "Correo Electrónico", class: "absolute left-4 text-gray-500 text-base transform duration-300
+            -translate-y-full scale-75 bg-white px-1 top-2
+            peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+
+        <%# Campo Contraseña %>
+        <div class="relative mb-4">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: " ", class: "peer block w-full py-3 px-4 border-2 border-gray-300 rounded-full text-gray-900 appearance-none focus:outline-none focus:border-orange-500 bg-white bg-opacity-70" %>
+          <%# Label flotante con la lógica corregida %>
+          <%= f.label :password, "Contraseña", class: "absolute left-4 text-gray-500 text-base transform duration-300
+            -translate-y-full scale-75 bg-white px-1 top-2
+            peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0" %>
+        </div>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center justify-between mt-4">
+          <div class="flex items-center">
+            <%= f.check_box :remember_me, class: "h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded" %>
+            <%= f.label :remember_me, "Recordarme", class: "ml-2 block text-sm text-gray-900" %>
+          </div>
+
+          
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Iniciar Sesión", class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-full text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300" %>
+      </div>
+    <% end %>
+
+    <%# Si quieres mostrar otros enlaces (como registro o recuperar contraseña si no están ya arriba)
+       Devise automáticamente usa el helper de ruta correcto para el "resource_name" %>
+    <%= render "devise/shared/links" %>
+    <%# O si es para admins: <%= render "admins/shared/links" %>
+
+  </div>
+</div>
